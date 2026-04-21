@@ -1,0 +1,12 @@
+[
+  {
+    "customerName": "Jane Doe LLC",
+    "amount": 40.0,
+    "date": "2026-03-05"
+  },
+  {
+    "customerName": "Bob Smith",
+    "amount": 25.0,
+    "date": "2024-03-12"
+  }
+]
