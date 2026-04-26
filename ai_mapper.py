@@ -8,52 +8,31 @@ load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=api_key) 
 
-def normalize_date_value(val):
-    if not isinstance(val, str):
-        return val
-    s = val.strip()
-    # if already ISO-like, return as-is if parse succeeds and formatted matches
-    try:
-        dt = date_parser.parse(s, fuzzy=True, default=None)
-        # if parse returns a datetime, format to YYYY-MM-DD
-        return dt.date().isoformat()
-    except Exception:
-        return val
-
-def normalize_record(record):
-    # record expected to be a dict; normalize common date keys
-    if not isinstance(record, dict):
-        return record
-    rec = dict(record)  # shallow copy
-    # common keys to normalize; add more keys if needed
-    for k in list(rec.keys()):
-        if k.lower() in ("date", "date_paid", "transaction_date", "dt"):
-            rec[k] = normalize_date_value(rec[k])
-    # fallback: if no explicit date key, try to find any value that parses as a date
-    if not any(k.lower() == "date" for k in rec):
-        for k, v in rec.items():
-            if isinstance(v, str):
-                parsed = normalize_date_value(v)
-                if parsed != v:
-                    rec[k] = parsed
-                    break
-    return rec
-
 def transform_with_ai(record):
-    # if record is a dict, normalize dates and serialize
-    if isinstance(record, dict):
-        normalized = normalize_record(record)
-        record_str = json.dumps(normalized, ensure_ascii=False)
-    else:
-        record_str = str(record)
-
+    record_str = json.dumps(record)
+    #print(record_str)
     prompt = f"""
     Convert this data into the target schema:
+    CRITICAL RULES:
+    - Do NOT encode, compress, or transform values into numbers or IDs.
+    - Preserve all text exactly as it appears in the input unless explicitly reformatted.
+    - Only split fields when explicitly instructed and based on clear delimiters.
+    - Do NOT infer or guess values that are not directly present.
+
+    Transformation rules:
+    - full_name = cust_name (copy exactly)
+    - signup_date = convert signup_dt to YYYY-MM-DD format only
+    - addr format is: "street, city, state"
+    - street = text before first comma
+    - city = text between first and second comma
+    - state = text after second comma (trim spaces)
 
     Target schema:
-    - customerName (string with numbers)
-    - amount (number)
-    - date (YYYY-MM-DD)
+    - full_name(string)
+    - street (string with number)
+    - city (string)
+    - state (string)
+    - signup_date (YYYY-MM-DD)
 
     Input:
     {record_str}
@@ -67,3 +46,12 @@ def transform_with_ai(record):
     )
 
     return response.output_text
+
+def transform_with_retry(record, retries=3):
+    for attempt in range(retries):
+        try:
+            return transform_with_ai(record)
+        except Exception as e:
+            print(f"Attempt {attempt + 1} failed: {e}")
+    print("All attempts failed. Returning None.")
+    return None

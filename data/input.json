@@ -1,12 +1,37 @@
 [
   {
-    "customer_name": "Jane Doe LLC",
-    "amount": "$40",
-    "date": "March 5"
+    "cust_name": "John Doe",
+    "addr": "123 Main St, Los Angeles, CA",
+    "signup_dt": "01/15/24"
   },
   {
-    "customer_name": "Bob Smith",
-    "amount": "25 dollars",
-    "date": "3/12/24"
+    "cust_name": "Jane Smith",
+    "addr": "456 Elm St, Irvine, CA",
+    "signup_dt": "02/20/24"
+  },
+  {
+    "cust_name": "Michael Johnson",
+    "addr": "789 Oak Ave, San Diego, CA",
+    "signup_dt": "03/05/24"
+  },
+  {
+    "cust_name": "Emily Davis",
+    "addr": "101 Pine Rd, Seattle, WA",
+    "signup_dt": "12/31/23"
+  },
+  {
+    "cust_name": "Chris Lee",
+    "addr": "202 Maple Blvd, Austin, TX",
+    "signup_dt": "07/04/24"
+  },
+  {
+    "cust_name": "Alex Kim",
+    "addr": "303 Birch St, , NY",
+    "signup_dt": "04/10/24"
+  },
+  {
+    "cust_name": "Taylor Brown",
+    "addr": "404 Cedar Ln, Denver, CO",
+    "signup_dt": "invalid_date"
   }
 ]

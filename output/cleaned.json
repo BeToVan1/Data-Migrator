@@ -1,12 +1,45 @@
 [
   {
-    "customerName": "Jane Doe LLC",
-    "amount": 40.0,
-    "date": "2026-03-05"
+    "full_name": "John Doe",
+    "street": "123 Main St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "signup_date": "2024-01-15"
   },
   {
-    "customerName": "Bob Smith",
-    "amount": 25.0,
-    "date": "2024-03-12"
-  }
+    "full_name": "Jane Smith",
+    "street": "456 Elm St",
+    "city": "Irvine",
+    "state": "CA",
+    "signup_date": "2024-02-20"
+  },
+  {
+    "full_name": "Michael Johnson",
+    "street": "789 Oak Ave",
+    "city": "San Diego",
+    "state": "CA",
+    "signup_date": "2024-03-05"
+  },
+  {
+    "full_name": "Emily Davis",
+    "street": "101 Pine Rd",
+    "city": "Seattle",
+    "state": "WA",
+    "signup_date": "2023-12-31"
+  },
+  {
+    "full_name": "Chris Lee",
+    "street": "202 Maple Blvd",
+    "city": "Austin",
+    "state": "TX",
+    "signup_date": "2024-07-04"
+  },
+  {
+    "full_name": "Alex Kim",
+    "street": "303 Birch St",
+    "city": "",
+    "state": "NY",
+    "signup_date": "2024-04-10"
+  },
+  null
 ]
