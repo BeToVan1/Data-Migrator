@@ -25,13 +25,13 @@
     "signup_dt": "07/04/24"
   },
   {
-    "cust_name": "Alex Kim",
-    "addr": "303 Birch St, , NY",
-    "signup_dt": "04/10/24"
-  },
-  {
     "cust_name": "Taylor Brown",
     "addr": "404 Cedar Ln, Denver, CO",
     "signup_dt": "invalid_date"
+  },
+  {
+    "cust_name": "Alex Kim",
+    "addr": "303 Birch St, , NY",
+    "signup_dt": "04/10/24"
   }
 ]

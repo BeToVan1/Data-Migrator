@@ -22,11 +22,10 @@ def run_pipeline():
 
         if cleaned_record:
             success += 1
+            cleaned.append(cleaned_record)
         else:
             failures += 1
             
-        cleaned.append(cleaned_record)
-
     with open("output/cleaned.json", "w") as f:
         json.dump(cleaned, f, indent=2)
 
