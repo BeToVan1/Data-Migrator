@@ -9,7 +9,7 @@ def clean_data(ai_output):
         for field in required_fields:
             if field not in data:
                 raise ValueError(f"Missing field: {field}")
-            # Validate signup_date format   
+        # Validate signup_date format   
         if data["signup_date"] is None or not isinstance(data["signup_date"], str):
             raise ValueError("signup_date must be a string in YYYY-MM-DD format.")
         try:
